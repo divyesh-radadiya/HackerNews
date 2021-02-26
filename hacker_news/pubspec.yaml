@@ -33,6 +33,9 @@ dependencies:
   json_annotation:
   flutter_spinkit:
   intl:
+  sqflite:
+  path_provider:
+  lint:
 
 dev_dependencies:
   flutter_test:

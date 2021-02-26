@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'view_model/news_list_model.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<NewsListModel>(
-      create: (context) => NewsListModel(),
+      create: (BuildContext context) => NewsListModel(),
       child: MaterialApp(
         home: HomeScreen(),
       ),

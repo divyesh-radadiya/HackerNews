@@ -4,12 +4,12 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
 class NewsScreen extends StatelessWidget {
-  NewsScreen({this.index});
+  const NewsScreen({this.index});
   final int index;
 
   @override
   Widget build(BuildContext context) {
-    final df = new DateFormat('dd-MM-yyyy hh:mm a');
+    final DateFormat df = DateFormat('dd-MM-yyyy hh:mm a');
     final int myvalue =
         Provider.of<NewsListModel>(context).newsList[index].time;
 
@@ -19,13 +19,11 @@ class NewsScreen extends StatelessWidget {
               Provider.of<NewsListModel>(context).newsList[index].title ??
                   'hii'),
         ),
-        body: Container(
-            child: Column(
+        body: Column(
           children: [
             Text(Provider.of<NewsListModel>(context).newsList[index].by),
-            Text(df.format(
-                new DateTime.fromMillisecondsSinceEpoch(myvalue * 1000)))
+            Text(df.format(DateTime.fromMillisecondsSinceEpoch(myvalue * 1000)))
           ],
-        )));
+        ));
   }
 }
