@@ -13,7 +13,7 @@ class DatabaseService {
   }
 
   Future<void> _onCreateDatabase(Database database, int version) async {
-    await database.execute(
-        'Create table news(id INTEGER PRIMARY KEY,title TEXT, by TEXT,time INTEGER )');
+    await database.execute('''
+Create table news(id INTEGER PRIMARY KEY,title TEXT, by TEXT,time INTEGER )''');
   }
 }

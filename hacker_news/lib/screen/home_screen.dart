@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             title: Text(value.newsList[index].title),
                             subtitle: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
+                              children: <Widget>[
                                 Text('${value.newsList[index].id}'),
                                 Text(value.newsList[index].by),
                               ],

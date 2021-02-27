@@ -20,7 +20,7 @@ class NewsScreen extends StatelessWidget {
                   'hii'),
         ),
         body: Column(
-          children: [
+          children: <Widget>[
             Text(Provider.of<NewsListModel>(context).newsList[index].by),
             Text(df.format(DateTime.fromMillisecondsSinceEpoch(myvalue * 1000)))
           ],
