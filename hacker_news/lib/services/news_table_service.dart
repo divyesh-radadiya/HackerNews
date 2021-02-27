@@ -29,6 +29,11 @@ class NewsTableService {
     return con.query('news');
   }
 
+  Future<List<Map<String, dynamic>>> readDataById(int id) async {
+    final Database con = await database;
+    return con.query('news', where: 'id=?', whereArgs: <dynamic>[id]);
+  }
+
   Future<int> lengthOfData() async {
     final Database con = await database;
     final List<Map<String, dynamic>> result =
