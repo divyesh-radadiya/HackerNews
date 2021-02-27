@@ -41,16 +41,6 @@ class NewsListModel extends ChangeNotifier {
 
   Future<void> getNextNews() async {
     final List<NewsModel> newNewsList = <NewsModel>[];
-<<<<<<< HEAD
-    int j = index;
-    for (int i = 0; i < 10; i++, index++, j++) {
-      if (allData.isEmpty) await getFromTable();
-      if (index < allData.length) {
-        newNewsList.add(NewsModel.fromJson(allData[index]));
-      } else {
-        if (allTopIds.isEmpty) await getTopIds();
-        if (index < allTopIds.length) {
-=======
     if (allTopIds.isEmpty) await getTopIds();
 
     if (allTopIds.isNotEmpty) {
@@ -61,7 +51,6 @@ class NewsListModel extends ChangeNotifier {
           newNewsList.add(NewsModel.fromJson(data[0]));
           index++;
         } else {
->>>>>>> get_news_by_id_from_table
           final NewsModel newNews = await getNewsById(allTopIds[index]);
           if (newNews != null) {
             newNewsList.add(newNews);
