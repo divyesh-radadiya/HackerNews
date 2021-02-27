@@ -18,9 +18,12 @@ class NewsListModel extends ChangeNotifier {
         'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty');
 
     final dynamic allIds = await networkService.getData();
-    for (final dynamic x in allIds) {
-      allTopIds.add(x as int);
+    if (allIds != null) {
+      for (final dynamic x in allIds) {
+        allTopIds.add(x as int);
+      }
     }
+
     notifyListeners();
   }
 
@@ -29,7 +32,11 @@ class NewsListModel extends ChangeNotifier {
         'https://hacker-news.firebaseio.com/v0/item/$id.json?print=pretty');
 
     final dynamic news = await networkService.getData();
-    return NewsModel.fromJson(news as Map<String, dynamic>);
+    if (news != null) {
+      return NewsModel.fromJson(news as Map<String, dynamic>);
+    } else {
+      return null;
+    }
   }
 
   Future<void> getNextNews() async {
@@ -37,15 +44,19 @@ class NewsListModel extends ChangeNotifier {
     if (allTopIds.isEmpty) await getTopIds();
 
     if (allTopIds.isNotEmpty) {
-      for (int i = 0; i < 10; i++, index++) {
+      for (int i = 0; i < 10 && index < 500; i++) {
         final List<Map<String, dynamic>> data =
             await NewsTableService().readDataById(allTopIds[index]);
         if (data.isNotEmpty) {
           newNewsList.add(NewsModel.fromJson(data[0]));
+          index++;
         } else {
           final NewsModel newNews = await getNewsById(allTopIds[index]);
-          newNewsList.add(newNews);
-          await NewsTableService().insertData(newNews.toJson());
+          if (newNews != null) {
+            newNewsList.add(newNews);
+            await NewsTableService().insertData(newNews.toJson());
+            index++;
+          }
         }
       }
     } else {

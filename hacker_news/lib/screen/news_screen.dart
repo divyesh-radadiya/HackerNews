@@ -15,15 +15,31 @@ class NewsScreen extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-              Provider.of<NewsListModel>(context).newsList[index].title ??
-                  'hii'),
+          title: Text(Provider.of<NewsListModel>(context)
+              .newsList[index]
+              .id
+              .toString()),
         ),
-        body: Column(
-          children: <Widget>[
-            Text(Provider.of<NewsListModel>(context).newsList[index].by),
-            Text(df.format(DateTime.fromMillisecondsSinceEpoch(myvalue * 1000)))
-          ],
+        body: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const Text('Title :'),
+              Text(Provider.of<NewsListModel>(context).newsList[index].title),
+              const SizedBox(
+                height: 10.0,
+              ),
+              const Text('By :'),
+              Text(Provider.of<NewsListModel>(context).newsList[index].by),
+              const SizedBox(
+                height: 10.0,
+              ),
+              const Text('Time :'),
+              Text(df
+                  .format(DateTime.fromMillisecondsSinceEpoch(myvalue * 1000)))
+            ],
+          ),
         ));
   }
 }

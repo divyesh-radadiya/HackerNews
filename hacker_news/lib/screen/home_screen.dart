@@ -35,32 +35,44 @@ class _HomeScreenState extends State<HomeScreen> {
                 ? Loading()
                 : ListView.builder(
                     controller: myScrollController,
-                    itemCount: value.newsList.length,
+                    itemCount: value.newsList.length + 1,
                     itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding:
-                            const EdgeInsets.only(top: 8, left: 8, right: 8),
-                        child: Card(
-                          elevation: 5.0,
-                          child: ListTile(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute<dynamic>(
-                                      builder: (BuildContext context) =>
-                                          NewsScreen(index: index)));
-                            },
-                            title: Text(value.newsList[index].title),
-                            subtitle: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text('${value.newsList[index].id}'),
-                                Text(value.newsList[index].by),
-                              ],
+                      if (index != value.newsList.length) {
+                        return Padding(
+                          padding:
+                              const EdgeInsets.only(top: 8, left: 8, right: 8),
+                          child: Card(
+                            elevation: 5.0,
+                            child: ListTile(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute<dynamic>(
+                                        builder: (BuildContext context) =>
+                                            NewsScreen(index: index)));
+                              },
+                              title: Text(value.newsList[index].title),
+                              subtitle: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Text('${value.newsList[index].id}'),
+                                  Text(value.newsList[index].by),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      );
+                        );
+                      } else {
+                        return Center(
+                          child: Container(
+                              padding:
+                                  const EdgeInsets.only(top: 10, bottom: 10),
+                              height: 70.0,
+                              width: 50.0,
+                              child: const CircularProgressIndicator()),
+                        );
+                      }
                     },
                   ),
       ),
