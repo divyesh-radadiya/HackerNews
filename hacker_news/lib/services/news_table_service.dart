@@ -33,11 +33,4 @@ class NewsTableService {
     final Database con = await database;
     return con.query('news', where: 'id=?', whereArgs: <dynamic>[id]);
   }
-
-  Future<int> lengthOfData() async {
-    final Database con = await database;
-    final List<Map<String, dynamic>> result =
-        await con.rawQuery('SELECT COUNT(*) FROM news');
-    return Sqflite.firstIntValue(result);
-  }
 }

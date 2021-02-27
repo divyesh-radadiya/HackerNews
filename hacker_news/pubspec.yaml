@@ -39,12 +39,15 @@ dependencies:
   dio: 
   bloc:
   flutter_bloc:
+  moor:
+  moor_flutter:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner:
   json_serializable:
+  moor_generator:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
