@@ -4,9 +4,9 @@ import 'package:hacker_news/view_model/news_model.dart';
 import 'package:hacker_news/services/news_table_service.dart';
 
 class NewsListModel extends ChangeNotifier {
-  List<NewsModel> newsList = List<NewsModel>(0);
-  List<int> allTopIds = List<int>(0);
-  List<Map<String, dynamic>> allData = List<Map<String, dynamic>>(0);
+  List<NewsModel> newsList = <NewsModel>[];
+  List<int> allTopIds = <int>[];
+  List<Map<String, dynamic>> allData = <Map<String, dynamic>>[];
   int index = 0;
 
   Future<void> getFromTable() async {
@@ -33,7 +33,7 @@ class NewsListModel extends ChangeNotifier {
   }
 
   Future<void> getNextNews() async {
-    final List<NewsModel> newNewsList = List<NewsModel>(0);
+    final List<NewsModel> newNewsList = <NewsModel>[];
     int j = index;
     for (int i = 0; i < 10; i++, index++, j++) {
       if (allData.isEmpty) await getFromTable();
