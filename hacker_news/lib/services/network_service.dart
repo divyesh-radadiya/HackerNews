@@ -22,7 +22,8 @@ class NetworkService {
   }
 
   Future<List<int>> getTopIds() async {
-    List<int> ids = <int>[];
+    final List<int> ids = <int>[];
+
     final dynamic allIds = await _getData(
         'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty');
     if (allIds != null) {
@@ -30,6 +31,7 @@ class NetworkService {
         ids.add(x as int);
       }
     }
+
     return ids;
   }
 
